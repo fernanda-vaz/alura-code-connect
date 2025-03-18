@@ -12,6 +12,7 @@
 
 .header figure {
     margin: 0;
+    position: relative;
 }
 
 .img {
@@ -47,4 +48,9 @@
 
 .footer {
     padding: 16px;
+}
+
+.link {
+    text-decoration: none;
+    cursor: pointer;
 }
