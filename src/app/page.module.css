@@ -11,5 +11,6 @@
 }
 
 .links a {
-  margin: 0 8px;
+  margin: 8px;
+  padding: 8px;
 }

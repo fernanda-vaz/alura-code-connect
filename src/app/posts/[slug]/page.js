@@ -3,29 +3,34 @@ import { remark } from 'remark'
 import html from 'remark-html'
 import styles from './page.module.css'
 import { CardPost } from '@/components/CardPost'
+import db from '../../../../prisma/db'
+import { redirect } from 'next/navigation'
 
 async function getPostBySlug(slug) {
-  const url = `http://localhost:3042/posts?slug=${slug}`
-  const response = await fetch(url)
+  try {
+    const post = await db.post.findFirst({
+      where: {
+        slug,
+      },
+      include: {
+        author: true,
+      },
+    })
 
-  if (!response.ok) {
-    logger('Ops, alguma coisa deu errado...')
-    return {}
+    if (!post) {
+      throw new Error(`Post ${slug} não encontrado.`)
+    }
+
+    const processedContent = await remark().use(html).process(post.markdown)
+    const contentHTML = processedContent.toString()
+
+    post.markdown = contentHTML
+
+    return post
+  } catch (error) {
+    logger.error('Falha ao obter post.', error)
   }
-  logger.info('Posts obtidos com sucesso!')
-  const data = await response.json()
-
-  if (data.length == 0) {
-    return {}
-  }
-  const post = data[0]
-
-  const processedContent = await remark().use(html).process(post.markdown)
-  const contentHTML = processedContent.toString()
-
-  post.markdown = contentHTML
-
-  return post
+  redirect('/not-found')
 }
 
 const PagePost = async ({ params }) => {
