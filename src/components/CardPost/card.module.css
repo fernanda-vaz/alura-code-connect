@@ -44,13 +44,28 @@
     font-size: 18px;
     font-weight: 400;
     text-decoration: underline;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.link:hover {
+    opacity: 0.8;
 }
 
 .footer {
     padding: 16px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.link {
-    text-decoration: none;
-    cursor: pointer;
+.footer p {
+    margin: 0;
+    color: #888;
+    font-size: 15px;
+    text-align: center;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }

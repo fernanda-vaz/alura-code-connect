@@ -26,9 +26,10 @@ async function getAllPosts(page, searchTerm) {
       take: perPage,
       skip,
       where,
-      orderBy: { createdAt: 'desc' },
+      orderBy: { id: 'desc' },
       include: {
         author: true,
+        comments: true,
       },
     })
 
@@ -50,8 +51,16 @@ export default async function Home({ searchParams }) {
         <CardPost post={post} key={post.id} />
       ))}
       <div className={styles.links}>
-        {prev && <Link href={{ pathname: '/', query: { page: prev, q: searchTerm }}}>Página anterior</Link>}
-        {next && <Link href={{ pathname: '/', query: { page: next, q: searchTerm }}}>Próxima página</Link>}
+        {prev && (
+          <Link href={{ pathname: '/', query: { page: prev, q: searchTerm } }}>
+            Página anterior
+          </Link>
+        )}
+        {next && (
+          <Link href={{ pathname: '/', query: { page: next, q: searchTerm } }}>
+            Próxima página
+          </Link>
+        )}
       </div>
     </main>
   )
