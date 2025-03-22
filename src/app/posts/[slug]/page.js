@@ -5,6 +5,7 @@ import styles from './page.module.css'
 import { CardPost } from '@/components/CardPost'
 import db from '../../../../prisma/db'
 import { redirect } from 'next/navigation'
+import { CommentsList } from '@/components/CommentsList'
 
 async function getPostBySlug(slug) {
   try {
@@ -14,7 +15,19 @@ async function getPostBySlug(slug) {
       },
       include: {
         author: true,
-        comments: true,
+        comments: {
+          include: {
+            author: true,
+            children: {
+              include: {
+                author: true,
+              },
+            },
+          },
+          where: {
+            parentId: null,
+          },
+        },
       },
     })
 
@@ -44,6 +57,7 @@ const PagePost = async ({ params }) => {
       <div className={styles.code}>
         <div dangerouslySetInnerHTML={{ __html: post.markdown }} />
       </div>
+      <CommentsList comments={post.comments} />
     </div>
   )
 }

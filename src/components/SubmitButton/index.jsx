@@ -14,7 +14,8 @@ export const SubmitButton = ({ children }) => {
         <Spinner />
       ) : (
         <>
-          {children} <ArrowFoward />
+          {children}
+          <ArrowFoward />
         </>
       )}
     </Button>

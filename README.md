@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Code Connect
 
-## Getting Started
+**Code Connect** é um projeto desenvolvido durante o curso da **Alura**: Next.js: Construindo com Server Actions, e aqui estão todas as informações necessárias para configurar e executar a aplicação.
 
-First, run the development server:
+---
+
+## 🚀 Começando
+
+Siga as instruções abaixo para configurar o projeto em sua máquina local.
+
+### Pré-requisitos
+
+Antes de começar, certifique-se de ter instalado:
+
+- [Node.js](https://nodejs.org/) (v18 ou superior)
+- [Docker](https://www.docker.com/) (para o banco de dados PostgreSQL)
+- [Git](https://git-scm.com/)
+
+### Clonando o Repositório
+
+Clone o repositório do projeto usando o seguinte comando:
+
+```bash
+git clone git@github.com:fernanda-vaz/alura-code-connect.git
+```
+
+### Instalando as Dependências
+
+```bash
+cd alura-code-connect
+npm install
+```
+
+### Configuração do Banco de Dados
+
+1. Certifique-se de que o Docker está em execução.
+
+2. Inicie o container do PostgreSQL com o seguinte comando:
+
+```bash
+docker compose up -d
+```
+
+3. Execute as migrations e o seeder para configurar o banco de dados:
+
+```bash
+npx prisma generate && npx prisma migrate dev && npx prisma db seed
+```
+
+### Executando a Aplicação:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🛠️ Tecnologias Utilizadas
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Next.js**: Framework React para renderização do lado do servidor (SSR) e geração de sites estáticos (SSG).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Prisma**: ORM para Node.js e TypeScript, utilizado para gerenciar o banco de dados PostgreSQL.
 
-## Learn More
+- **PostgreSQL**: Banco de dados relacional para armazenar posts, usuários e comentários.
 
-To learn more about Next.js, take a look at the following resources:
+- **Docker**: Para containerização e execução do banco de dados.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **CSS Modules**: Para estilização modularizada dos componentes.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 📝 Licença
+Este projeto está licenciado sob a licença MIT. Consulte o arquivo LICENSE para mais detalhes.

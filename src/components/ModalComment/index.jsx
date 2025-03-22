@@ -5,13 +5,12 @@ import { IconButton } from '../IconButton'
 import { Chat } from '../icons/Chat'
 import { Modal } from '../Modal'
 import styles from './modalcomment.module.css'
-import { TextArea } from '../TextArea'
 import { SubmitButton } from '../SubmitButton'
 import { Subheading } from '../Subheading'
+import { TextArea } from '../TextArea'
 
 export const ModalComment = ({ action }) => {
   const modalRef = useRef(null)
-
   return (
     <>
       <Modal ref={modalRef}>
@@ -28,7 +27,6 @@ export const ModalComment = ({ action }) => {
           </div>
         </form>
       </Modal>
-
       <IconButton onClick={() => modalRef.current.openModal()}>
         <Chat />
       </IconButton>
